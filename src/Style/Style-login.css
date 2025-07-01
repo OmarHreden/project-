@@ -1,0 +1,127 @@
+ .container {
+     display: flex;
+     height: 100vh;
+ }
+
+  .left {
+      background-color: #2563eb;
+      color: white;
+      /* flex: 1; */
+      width: 60%;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .left::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -100px;
+      /* move shape into right position */
+      width: 200%;
+      height: 100%;
+      background-color: #a3a0a4;
+      border-radius: 0 50% 50% 0;
+        background-image: url('../Assst/login.jpeg');
+        background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            /* ← هنا تضع رابط الصورة */
+  }
+
+  .left-content {
+      position: relative;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      padding: 2rem;
+      text-align: center;
+      font-size: 24px;
+  }
+ .right {
+     /* flex: 1; */
+     width: 40%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: #fdfbfc;
+ }
+ .h1-login{
+    text-align: center;
+ }
+ .login-form {
+     width: 300px;
+ }
+
+ .login-form h1 {
+     color: #2563eb;
+     margin-bottom: 20px;
+ }
+
+ .login-form input {
+     width: 100%;
+     padding: 10px;
+     margin: 10px 0;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+ }
+
+ .login-form button {
+     width: 100%;
+     padding: 10px;
+     background-color: #2563eb;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+ }
+
+ .login-form link-verifi {
+     display: block;
+     margin-top: 10px;
+     text-align: right;
+     font-size: 12px;
+     color: #5e1776;
+     text-decoration: none;
+ }
+ 
+/*  */
+.input-wrapper {
+    position: relative;
+    margin: 15px 0;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 10px 35px 10px 35px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.container h2{
+    position: absolute;
+       top: 400px;
+    left: 250px;
+}
+.icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.input-wrapper .icon:first-child {
+    left: 10px;
+}
+.toggle-password {
+    left: 275px;
+    cursor: pointer;
+}
+
+.p-error{
+    position: absolute;
+        top: 33px;
+        left: 11px;
+        color:red;
+}

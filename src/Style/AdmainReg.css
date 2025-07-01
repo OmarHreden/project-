@@ -1,0 +1,67 @@
+.parent {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 80%;
+}
+
+/* تنسيق صندوق التسجيل */
+.register {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    width: 80%;
+}
+
+/* تنسيق النموذج */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* تنسيق الليبل */
+form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* تنسيق المدخلات */
+form input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* تنسيق الزر */
+form button,
+.regester-nav {
+    background-color: #2563eb;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    margin-right: 5px;
+    display: inline-block;
+    /* مهم لرابط React */
+}
+
+form button:hover,
+.regester-nav:hover {
+    background-color: #0451f8;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}

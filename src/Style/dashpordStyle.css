@@ -1,0 +1,152 @@
+/* Global  */
+.item-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+body {
+    margin: 0px;
+}
+
+/* Top Bar */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 13px 20px 0px #dee1e1;
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: var(--bg-color);
+
+}
+
+.link-tobBar {
+    background-color: var(--btn-bg);
+    border: none;
+    color: var(--btn-color);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Side Bar */
+.link-sid {
+    padding: 20px;
+    font-size: 24px;
+    color: var(--text-color);
+    /* background-color: var(--btn-bg); */
+    border-radius: 8px;
+    display: inline-block;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+    /* box-sizing: border-box; */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    ;
+}
+
+.oo {
+
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    font-size: 14px;
+    /* padding: 5px; */
+    color: var(--text-color);
+    text-align: justify;
+    text-decoration: none;
+    /* display:; */
+}
+
+.link-sid:hover .oo {
+    max-height: 50px;
+}
+
+/* .oo:hover {
+    display: block;
+} */
+
+/* dispord */
+.contener-dish {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-contener);
+}
+
+.sid-bar {
+    background-color:var(--bg-color);
+    width: 20%;
+    border-right: 2px solid #c9cccc;
+    height: 100vh;
+
+    margin: 2px;
+    /* box-shadow: 8px 0px 12px #dee1e1; */
+    padding-top: 20px;
+}
+
+
+
+.HomeDash {
+    width: 80%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.topPart {
+    /* background-color: var(--bg-color); */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.t {
+    width: 150px;
+    height: 75px;
+    padding: 20px;
+    background-color: #fff;
+    ;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* .topPart {
+    margin-bottom: 100px;
+} */
+
+/* user table */
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+    padding: 12px 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+caption {
+    caption-side: top;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
