@@ -33,23 +33,23 @@ function AddHotel() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = new FormData();
-    data.append('name', formData.name);
-    data.append('description', formData.description);
-    data.append('email', formData.email);
-    data.append('address', formData.address);
-    data.append('longitude', formData.longitude);
-    data.append('latitude', formData.latitude);
+    // const data = new FormData();
+    // data.append('name', formData.name);
+    // data.append('description', formData.description);
+    // data.append('email', formData.email);
+    // data.append('address', formData.address);
+    // data.append('longitude', formData.longitude);
+    // data.append('latitude', formData.latitude);
     // formData.images.forEach((file) => {
     //   data.append('images', file);
     // });
     
     try {
-      const res = await axios.post('http://localhost:8080/super_admin/create-hotel' , {
-          data
-        });
+    const res = await axios.post('http://localhost:8080/super_admin/create-hotel', formData);
+          
+        
         alert('تمت الإضافة بنجاح!');
-        console.log(data);
+        // console.log(data);
     } catch (err) {
       alert('حدث خطأ في الإرسال!');
       console.error(err);

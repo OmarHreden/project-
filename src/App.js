@@ -12,6 +12,7 @@ import {BrowserRouter} from 'react-router-dom'
 import './Style/Style-vierfi.css';
 import Hotel from "./Dashpord_page/AddHotel";
 import { ThemeProvider } from "./ThemeContext";
+import ShowHotel from './Dashpord_page/Hotel';
 export default function App(){
  return(
  
@@ -29,6 +30,7 @@ export default function App(){
           <Route path="admain" element={<Admain></Admain>}></Route>
           <Route path="Add-Admain" element={<AdmainRegester></AdmainRegester>}></Route>
           <Route path="Add-Hotel" element={<Hotel></Hotel>}></Route>
+          <Route path="Show-Hotel" element={<ShowHotel></ShowHotel>}></Route>
 
         </Route>
           </Routes>

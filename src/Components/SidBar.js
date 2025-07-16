@@ -23,7 +23,7 @@ return(
         </Link>
         
 
-        <Link to="user" className="link-sid"> <FaHotel></FaHotel> Hotel
+        <Link to="Show-Hotel" className="link-sid"> <FaHotel></FaHotel> Hotel
             <div className="oo">
                     <Link className="oo" to="Add-Hotel">add</Link>
             </div>

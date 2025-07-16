@@ -14,6 +14,7 @@ export default function Hdash (){
             { month: "فبراير", hotels: 100, airlines: 110 },
             { month: "مارس", hotels: 140, airlines: 130 },
             { month: "مارشس", hotels: 140, airlines: 130 },
+            { month: "ايلول", hotels: 140, airlines: 130 },
         ];
         setData(fakeData);
         }, []);

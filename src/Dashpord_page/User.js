@@ -9,7 +9,7 @@ export default function User(){
     const[run,setcont]=useState(0);
 
             useEffect(()=>{
-                fetch("http://localhost:8000/api/user/show")
+                fetch("http://localhost:8000/api/user/show")//SAcontroll ::"/unblock_users"
                 .then((res) => res.json())
                 .then((data) =>  setUsers(data))
             },[run]);
