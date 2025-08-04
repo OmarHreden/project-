@@ -179,7 +179,7 @@ export default function HotelsManager() {
   };
 
   return (
-    <div className="container">
+    <div className="container-hotel">
       {/* <h1 className="title">إدارة الفنادق (عرض تجريبي بدون API)</h1> */}
 
       {/* مربع البحث */}

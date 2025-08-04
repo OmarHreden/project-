@@ -5,7 +5,7 @@ body {
     padding: 0;
 }
 
-.form-container {
+.form-container-ah {
     width: 70%;
         overflow: scroll;
         height: 90vh;
@@ -17,23 +17,20 @@ body {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.form-container h2 {
+.form-container-ah h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
 }
 
-form label {
+.ah {
     display: block;
     margin: 12px 0 6px;
     font-weight: 600;
     color: #444;
 }
 
-form input[type="text"],
-form input[type="email"],
-form textarea,
-form input[type="file"] {
+.input-hotl {
     width: 100%;
     padding: 10px 12px;
     border-radius: 8px;

@@ -12,7 +12,8 @@ import {BrowserRouter} from 'react-router-dom'
 import './Style/Style-vierfi.css';
 import Hotel from "./Dashpord_page/AddHotel";
 import { ThemeProvider } from "./ThemeContext";
-import ShowHotel from './Dashpord_page/Hotel';
+import ShowHotel from './Dashpord_page/Hotel2';
+import Profile from './profileSA';
 export default function App(){
  return(
  
@@ -22,6 +23,8 @@ export default function App(){
   <ThemeProvider>
           <Routes>
             {/* <Route path='/verifi' element={<Verifi/>}></Route> */}
+
+            <Route path="/profile" element={<Profile></Profile>}></Route>
             <Route path="/login" element={<Login></Login>}></Route>
             <Route path="/verifi" element={<Ver2></Ver2>}></Route>
             <Route path="/dish" element={<Dash></Dash>}>

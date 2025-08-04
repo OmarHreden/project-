@@ -3,66 +3,66 @@ import axios from "axios";
 import "../Style/hotel.css";
 
 export default function HotelsManager() {
-  const [hotels, setHotels] = useState([]);           // كل الفنادق من الـ API
-  const [filteredHotels, setFilteredHotels] = useState([]); // الفنادق المعروضة
+  const [hotels, setHotels] = useState([]);
+  const [filteredHotels, setFilteredHotels] = useState([]);
   const [selectedHotel, setSelectedHotel] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // بيانات البحث
   const [searchName, setSearchName] = useState("");
   const [searchLocation, setSearchLocation] = useState("");
 
-  // جلب الفنادق مرة واحدة
   const fetchHotels = async () => {
-    setLoading(true);
-    try {
-      const res = await axios.get("API_جلب_الفنادق"); // غير هذا للـ API الخاص بك
-      setHotels(res.data);
-      setFilteredHotels(res.data); // عند التحميل الأول = الكل
-    } catch (err) {
-      setError("فشل تحميل الفنادق");
-    } finally {
-      setLoading(false);
-    }
-  };
+  setLoading(true);
+  try {
+    const token = localStorage.getItem("token"); 
+    const res = await axios.get("http://localhost:8080/super_admin/all-hotel", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setHotels(res.data);
+    setFilteredHotels(res.data);
+  } catch (err) {
+    setError("Download failed");
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchHotels();
   }, []);
 
-  // البحث المحلي
   const handleSearch = () => {
     const filtered = hotels.filter(hotel =>
-      hotel.name.toLowerCase().includes(searchName.toLowerCase()) &&
-      hotel.location.toLowerCase().includes(searchLocation.toLowerCase())
+      hotel.hotelName.toLowerCase().includes(searchName.toLowerCase()) &&
+      hotel.address.toLowerCase().includes(searchLocation.toLowerCase())
     );
     setFilteredHotels(filtered);
   };
 
-  // عند اختيار فندق
   const selectHotel = (hotel) => {
     setSelectedHotel(hotel);
     setFormData({
-      name: hotel.name || "",
-      email: hotel.email || "",
+      hotelName: hotel.hotelName || "",
+      ownerEmail: hotel.ownerEmail || "",
       description: hotel.description || "",
-      location: hotel.location || "",
+      address: hotel.address || "",
       latitude: hotel.latitude || "",
       longitude: hotel.longitude || "",
-      images: hotel.images || [],
+      imageDTOS: hotel.imageDTOS || [],
     });
   };
 
-  // فورم التعديل
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    hotelName: "",
+    ownerEmail: "",
     description: "",
-    location: "",
+    address: "",
     latitude: "",
     longitude: "",
-    images: [],
+    imageDTOS: [],
   });
 
   const handleChange = (e) => {
@@ -70,49 +70,65 @@ export default function HotelsManager() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleUpdate = async () => {
-    if (!selectedHotel) return;
-    try {
-      await axios.put(`API_تعديل_الفندق/${selectedHotel.id}`, formData);
-      alert("تم تعديل الفندق بنجاح");
-      setSelectedHotel(null);
-      fetchHotels();
-    } catch (err) {
-      alert("فشل تعديل الفندق");
-    }
-  };
+ const handleUpdate = async () => {
+  if (!selectedHotel) return;
+  try {
+    const token = localStorage.getItem("token");
+   await axios.put("http://localhost:8080/super_admin/update-hotel", {
+  hotelId: selectedHotel.hotelId,
+  ...formData,
+});
+
+    alert("The hotel has been successfully update");
+    setSelectedHotel(null);
+    fetchHotels();
+  } catch (err) {
+    alert("failed updating");
+  }
+};
+
 
   const handleDelete = async () => {
-    if (!selectedHotel) return;
-    const confirmDelete = window.confirm("هل أنت متأكد من حذف الفندق؟");
-    if (!confirmDelete) return;
+  if (!selectedHotel) return;
+  const confirmDelete = window.confirm("Are you sure you want to delete the hotel?");
+  if (!confirmDelete) return;
+    console.log(selectedHotel.hotelId);
+  try {
+    const token = localStorage.getItem("token");
+  await axios.delete(`http://localhost:8080/super_admin/delete-hotel?id=${selectedHotel.hotelId}`,
 
-    try {
-      await axios.delete(`API_حذف_الفندق/${selectedHotel.id}`);
-      alert("تم حذف الفندق");
-      setSelectedHotel(null);
-      fetchHotels();
-    } catch (err) {
-      alert("فشل حذف الفندق");
-    }
-  };
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    alert("The hotel was deleted.");
+    setSelectedHotel(null);
+    fetchHotels();
+  } catch (err) {
+    alert("Failed to delete the hotel");
+  }
+};
+
+
 
   return (
-    <div className="container">
-      <h1 className="title">إدارة الفنادق</h1>
+    <div className="container-hotel">
+      <h1 className="title-hotel"> Hotel Management</h1>
 
       {/* مربع البحث */}
       <div style={{ marginBottom: "20px", textAlign: "center" }}>
         <input
           type="text"
-          placeholder="ابحث بالاسم"
+          placeholder="search name hotel"
           value={searchName}
           onChange={(e) => setSearchName(e.target.value)}
           style={{ padding: "8px", marginRight: "10px" }}
         />
         <input
           type="text"
-          placeholder="ابحث بالموقع"
+          placeholder="search address hotel "
           value={searchLocation}
           onChange={(e) => setSearchLocation(e.target.value)}
           style={{ padding: "8px", marginRight: "10px" }}
@@ -122,68 +138,70 @@ export default function HotelsManager() {
         </button>
       </div>
 
-      {loading && <p>جارٍ تحميل الفنادق...</p>}
+      {loading && <p>Loading hotels....</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {/* قائمة الفنادق */}
       <div className="hotels-list">
         {filteredHotels.map((hotel) => (
           <div
-            key={hotel.id}
+            key={hotel.hotelId}
             className="hotel-card"
             onClick={() => selectHotel(hotel)}
           >
             <img
-              src={hotel.images[0]}
-              alt={hotel.name}
+              src={hotel.imageDTOS[0]?.url || "/no-image.jpg"}
+              alt={hotel.hotelName}
               className="hotel-image"
             />
-            <h3 className="hotel-name">{hotel.name}</h3>
-            <p className="hotel-location">{hotel.location}</p>
+            <h3 className="hotel-name">{hotel.hotelName}</h3>
+            <p className="hotel-location">{hotel.address}</p>
           </div>
         ))}
       </div>
 
       {/* نموذج تعديل الفندق */}
       {selectedHotel && (
-        <div className="form-container">
-          <h2 className="form-title">تعديل بيانات الفندق: {selectedHotel.name}</h2>
+        <div className="form-container-hotel">
+          <h2 className="form-title-hotel">
+            Editing hotel data: {selectedHotel.hotelName}
+          </h2>
 
-          <label className="label">
-            الاسم:
+          <label className="label-hotel">
+            Name Hotel:
             <input
               className="input"
               type="text"
-              name="name"
-              value={formData.name}
+              name="hotelName"
+              value={formData.hotelName}
               onChange={handleChange}
             />
           </label>
 
-          <label className="label">
-            ايميل صاحب الفندق:
+          <label className="label-hotel">
+            The hotel's owner's email:
             <input
               className="input"
               type="email"
-              name="email"
-              value={formData.email}
+              name="ownerEmail"
+              value={formData.ownerEmail}
               onChange={handleChange}
             />
           </label>
 
-          <label className="label">
-            الموقع:
+          <label className="label-hotel">
+            address:
             <input
               className="input"
               type="text"
-              name="location"
-              value={formData.location}
+              name="address"
+              value={formData.address}
               onChange={handleChange}
             />
           </label>
 
-          <label className="label">
-            وصف:
+          <label className="label-hotel">
+            description :
             <textarea
               className="textarea"
               name="description"
@@ -193,8 +211,8 @@ export default function HotelsManager() {
             />
           </label>
 
-          <label className="label">
-            خط العرض:
+          <label className="label-hotel">
+             latitude address hotel:
             <input
               className="input"
               type="number"
@@ -205,8 +223,8 @@ export default function HotelsManager() {
             />
           </label>
 
-          <label className="label">
-            خط الطول:
+          <label className="label-hotel">
+             longitude address hotel:
             <input
               className="input"
               type="number"
@@ -217,30 +235,30 @@ export default function HotelsManager() {
             />
           </label>
 
-          <p>صور الفندق:</p>
-          <div className="images-container">
-            {formData.images.map((imgUrl, i) => (
+          <p>image hotel :</p>
+          <div className="images-container-hotel">
+            {formData.imageDTOS.map((img, i) => (
               <img
                 key={i}
-                src={imgUrl}
+                src={img.url}
                 alt={`صورة ${i + 1}`}
                 className="thumbnail"
               />
             ))}
           </div>
 
-          <div className="buttons-row">
+          <div className="buttons-row-hotel">
             <button className="btn btn-update" onClick={handleUpdate}>
-              تعديل
+              update
             </button>
             <button className="btn btn-delete" onClick={handleDelete}>
-              حذف
+              delet
             </button>
             <button
               className="btn btn-cancel"
               onClick={() => setSelectedHotel(null)}
             >
-              إلغاء
+              Cancel
             </button>
           </div>
         </div>

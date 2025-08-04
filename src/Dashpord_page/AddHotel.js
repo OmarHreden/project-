@@ -57,27 +57,27 @@ function AddHotel() {
   };
 
   return (
-    <div className="form-container">
+    <div className="form-container-ah">
      <h2>Add hotel</h2>
       <form onSubmit={handleSubmit}>
-        <label> hotel name</label>
-        <input type="text" name="name" onChange={handleChange} required />
+        <label className="ah"> hotel name</label>
+        <input className="input-hotl" type="text" name="name" onChange={handleChange} required />
 
-        <label>hotel  description </label>
+        <label className="ah">hotel  description </label>
         <textarea name="description" onChange={handleChange} required />
 
-        <label> hotel email </label>
-        <input type="email" name="email" onChange={handleChange} required />
+        <label className="ah"> hotel email </label>
+        <input className="input-hotl" type="email" name="email" onChange={handleChange} required />
 
-        <label>Address</label>
-        <input type="text" name="address" onChange={handleChange} required />
-        <label>longitude </label>
-        <input type="text" name="longitude" onChange={handleChange} required />
-        <label> latitude</label>
-        <input type="text" name="latitude" onChange={handleChange} required />
+        <label className="ah">Address</label>
+        <input className="input-hotl" type="text" name="address" onChange={handleChange} required />
+        <label className="ah">longitude </label>
+        <input className="input-hotl" type="text" name="longitude" onChange={handleChange} required />
+        <label className="ah"> latitude</label>
+        <input className="input-hotl" type="text" name="latitude" onChange={handleChange} required />
 {/* 
         <label>hotel  images </label>
-        <input type="file" name="images" multiple accept="image/*" onChange={handleFileChange} />
+        <input className="input-hotl" type="file" name="images" multiple accept="image/*" onChange={handleFileChange} />
 
         <div className="preview-container">
           {previewImages.map((src, i) => (

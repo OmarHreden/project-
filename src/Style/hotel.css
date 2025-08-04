@@ -1,4 +1,4 @@
-.container {
+.container-hotel {
     padding: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     max-width: 1000px;
@@ -9,7 +9,7 @@
         display: block;
 }
 
-.title {
+.title-hotel {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
@@ -55,7 +55,7 @@
     color: #555;
 }
 
-.form-container {
+.form-container-hotel {
     margin-top: 30px;
     padding: 25px;
     border: 1px solid #666;
@@ -66,13 +66,13 @@
     margin-right: auto;
 }
 
-.form-title {
+.form-title-hotel{
     margin-bottom: 15px;
     color: #222;
         position: inherit;
 }
 
-.label {
+.label-hotel {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
@@ -93,7 +93,7 @@
     resize: vertical;
 }
 
-.images-container {
+.images-container-hotel {
     display: flex;
     gap: 12px;
     margin-bottom: 15px;
@@ -108,7 +108,7 @@
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
-.buttons-row {
+.buttons-row-hotel {
     display: flex;
     gap: 15px;
 }

@@ -10,6 +10,7 @@ export default function Login(){
      const [password, setPassord] = useState("");
      const [emailError, setEmailerror] = useState();
      const [accept, setAccept] = useState(false);
+    
      console.log(email);
      console.log(password);
 
@@ -36,8 +37,14 @@ export default function Login(){
     
     })
    if(ser.status===200){
-        window.localStorage.setItem('email',email);
-        window.location.pathname='/dish/home';
+        // window.localStorage.setItem('email',email);
+        window.localStorage.setItem('token', ser.data.token);
+        
+        if(ser.data.roleName==="super_admin"){
+
+            window.location.pathname='/dish/home';
+        }
+        
     }
     }
     
